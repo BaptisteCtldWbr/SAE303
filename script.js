@@ -4,4 +4,4 @@ async function afficherFilms() {
     console.log(films);
   }
 
-afficherFilms();
+afficherFilms(); 
