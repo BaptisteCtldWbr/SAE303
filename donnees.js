@@ -5,7 +5,7 @@
     }).addTo(map);
     return map;
   }
-function recupererDonnes(url) {
+async function recupererDonnes(url) {
     return fetch(url)
       .then(response => response.json()) // Convertir en JSON
       .catch(error => {
