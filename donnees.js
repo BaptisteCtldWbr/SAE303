@@ -68,7 +68,7 @@ async function recupererDonnes(url) {
     L.geoJSON(geoJSONData, {
       onEachFeature: function (feature, layer) {
         let popupContent = 
-                          "<div class=\"popup\"> <p class=\"nomCinema\">" + feature.properties.nom + "</p><br>" +
+                          "<div class=\"popup\"> <span class=\"nomCinema\">" + feature.properties.nom + "</span><br>" +
                            "<span class=\"proprietePopup\">Adresse : </span>" + feature.properties.adresse + "<br>" +
                            "<span class=\"proprietePopup\">Commune : </span>" + feature.properties.commune + "<br>" +
                            "<span class=\"proprietePopup\">Nombre d'écrans : </span>" + feature.properties.ecrans + "<br>" +
