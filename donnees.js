@@ -70,11 +70,11 @@ async function recupererDonnes(url) {
         let popupContent = "<b>" + feature.properties.nom + "</b><br>" +
                            "Adresse : " + feature.properties.adresse + "<br>" +
                            "Commune : " + feature.properties.commune + "<br>" +
-                           "Ecrans : " + feature.properties.ecrans + "<br>" +
-                           "Fauteuils : " + feature.properties.fauteuils + "<br>" +
+                           "Nombre d'écrans : " + feature.properties.ecrans + "<br>" +
+                           "Nombre de fauteuils : " + feature.properties.fauteuils + "<br>" +
                            "Propriétaire : " + feature.properties.proprietaire + "<br>" +
-                           "Entrées : " + feature.properties.entrees + "<br>" +
-                           "Evolution des entrées : " + feature.properties.evolution_entrees + "%";
+                           "Nombre d'entrées en 2016 : " + feature.properties.entrees + "<br>" +
+                           "Evolution des entrées depuis 2015 : " + feature.properties.evolution_entrees + "%";
         layer.bindPopup(popupContent);
       }
     }).addTo(map);
