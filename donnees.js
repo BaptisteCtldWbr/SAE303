@@ -67,14 +67,15 @@ async function recupererDonnes(url) {
   function addDataToMap(map, geoJSONData) {
     L.geoJSON(geoJSONData, {
       onEachFeature: function (feature, layer) {
-        let popupContent = "<b>" + feature.properties.nom + "</b><br>" +
-                           "Adresse : " + feature.properties.adresse + "<br>" +
-                           "Commune : " + feature.properties.commune + "<br>" +
-                           "Nombre d'écrans : " + feature.properties.ecrans + "<br>" +
-                           "Nombre de fauteuils : " + feature.properties.fauteuils + "<br>" +
-                           "Propriétaire : " + feature.properties.proprietaire + "<br>" +
-                           "Nombre d'entrées en 2016 : " + feature.properties.entrees + "<br>" +
-                           "Evolution des entrées depuis 2015 : " + feature.properties.evolution_entrees + "%";
+        let popupContent = 
+                          "<div class=\"popup\"> <p class=\"nomCinema\">" + feature.properties.nom + "</p><br>" +
+                           "<span class=\"proprietePopup\">Adresse : </span>" + feature.properties.adresse + "<br>" +
+                           "<span class=\"proprietePopup\">Commune : </span>" + feature.properties.commune + "<br>" +
+                           "<span class=\"proprietePopup\">Nombre d'écrans : </span>" + feature.properties.ecrans + "<br>" +
+                           "<span class=\"proprietePopup\">Nombre de fauteuils : </span>" + feature.properties.fauteuils + "<br>" +
+                           "<span class=\"proprietePopup\">Propriétaire : </span>" + feature.properties.proprietaire + "<br>" +
+                           "<span class=\"proprietePopup\">Nombre d'entrées en 2016 : </span>" + feature.properties.entrees + "<br>" +
+                           "<span class=\"proprietePopup\">Evolution des entrées depuis 2015 : </span>" + feature.properties.evolution_entrees + "% </div>";
         layer.bindPopup(popupContent);
       }
     }).addTo(map);
