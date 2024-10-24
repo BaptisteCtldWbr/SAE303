@@ -4,3 +4,4 @@
 
 **Jeu de données :** https://data.iledefrance.fr/explore/dataset/les_salles_de_cinemas_en_ile-de-france/table/
 
+**Travail réalisé par** Baptiste CATELAND WAMBRE Amîn BENAMAOUCHE Abby BAUZ-NAZEBI et Falou BADIANE
