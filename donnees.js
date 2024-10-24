@@ -68,7 +68,17 @@ function convertToGeoJSON(data) {
 function addDataToMap(map, geoJSONData) {
   let markers = L.markerClusterGroup();
 
+  const iconCinema = L.icon({
+    iconUrl: 'images/pin-cinema.svg',
+    iconSize: [32, 32],          
+    iconAnchor: [16, 32],        
+    popupAnchor: [0, -32]        
+  });
+
   L.geoJSON(geoJSONData, {
+    pointToLayer: function(feature,latlng) {
+      return L.marker(latlng, {icon : iconCinema});
+    },
     onEachFeature: function (feature, layer) {
       let popupContent = 
                          "<span class=\"nomCinema\">" + feature.properties.nom + "</span><br>" +
