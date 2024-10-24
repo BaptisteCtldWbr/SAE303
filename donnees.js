@@ -66,7 +66,24 @@ function convertToGeoJSON(data) {
 
 // Fonction pour ajouter les données GeoJSON à la carte
 function addDataToMap(map, geoJSONData) {
-  let markers = L.markerClusterGroup();
+  const markers = L.markerClusterGroup({
+    iconCreateFunction: function(cluster) {
+      const count = cluster.getChildCount();
+
+      let className = 'marker-cluster-small'; // Petite taille par défaut
+      if (count > 50) {
+        className = 'marker-cluster-large';  // Grand cluster
+      } else if (count > 10) {
+        className = 'marker-cluster-medium'; // Cluster moyen
+      }
+
+      return new L.DivIcon({
+        html: '<div><span>' + count + '</span></div>',
+        className: className,
+        iconSize: [40, 40] // Taille du cercle de cluster
+      });
+    }
+  });
 
   const iconCinema = L.icon({
     iconUrl: 'images/pin-cinema.svg',

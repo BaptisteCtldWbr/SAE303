@@ -44,3 +44,20 @@ body {
     font-size: 1.5rem;
     font-family: Bebas Neue;
 }
+.marker-cluster-small {
+    background-color: #E42313; 
+    border: 2px solid #25303B;
+  }
+.marker-cluster-medium {
+    background-color: #E42313; 
+    border: 2px solid #25303B;
+  }
+.marker-cluster-large {
+    background-color: #E42313; 
+    border: 2px solid #25303B;
+  }
+  .marker-cluster div {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
