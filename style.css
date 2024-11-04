@@ -10,7 +10,7 @@ body {
 }
 
 #map {
-    height: 500px;
+    aspect-ratio: 5/3;
 }
 
 .popup .nomCinema {
