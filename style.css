@@ -217,3 +217,10 @@ ul img {
         margin-left: 0.5rem;
     }
 }
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    color: white;
+}
