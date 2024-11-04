@@ -9,8 +9,12 @@
      crossorigin=""/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-  
      <link rel="stylesheet" href="style.css">
+<style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body>
     <nav id="navbar" class="navbar"> <!--CSS fini-->
@@ -21,12 +25,12 @@
             
           </div>
         <ul>
-          <li>Accueil</li>
-          <li>Carte</li>
-          <li>Projet</li>
-          <li id="sources">Sources</li>
+            <li><a href="#titre">Accueil</a></li>
+            <li><a href="#carte">Carte</a></li>
+            <li><a href="#projet">Projet</a></li>
+            <li id="sources"><a href="#sources">Sources</a></li>
         </ul>
-    </nav>   
+    </nav>
     <div class="section_titre"> <!--CSS fini-->
         <h2 id="titre">[RE]DECOUVREZ LES CINEMAS DE VOS REGIONS</h2>
         <img src="images/cinema.svg" alt="cinema">
@@ -57,3 +61,4 @@
         <script src="donnees.js"></script>
 </body>
 </html>
+
