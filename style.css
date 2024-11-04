@@ -13,13 +13,13 @@ body {
     aspect-ratio: 5/3;
 }
 
-.popup .nomCinema {
+/*.popup .nomCinema {
     font-weight: 700;
     font-size: 1.5rem;
 }
 .popup .proprietePopup {
     font-weight: 600;
-}
+}*/
 
 /*PARTIE NAVIGATION*/
 #navbar {
@@ -27,24 +27,21 @@ body {
     grid-template-columns: auto 1fr;
     align-items: center; 
     gap: 4rem;
-}
-
-#navbar .logo {
-    size: 10rem;
-}
-
-#navbar ul {
-    display: flex; 
-    justify-content: flex-end; 
-    margin-right: 10rem; 
-    list-style: none; 
-    gap: 2rem;
-}
-
-#navbar ul li {
-    cursor: pointer;
-    font-size: 1.5rem;
-    font-family: Bebas Neue;
+    .logo {
+        size: 10rem;
+    }
+    ul {
+        display: flex; 
+        justify-content: flex-end; 
+        margin-right: 10rem; 
+        list-style: none; 
+        gap: 2rem;
+    }
+    ul li {
+        cursor: pointer;
+        font-size: 1.5rem;
+        font-family: Bebas Neue;
+    }
 }
 
 /*PARTIE TITRE*/
@@ -55,10 +52,9 @@ body {
     margin-left: 10rem;
     margin-right: 15rem;
     margin-top: 3rem;
-}
-
-.section_titre img {
-    margin-right: 2rem; 
+    img {
+        margin-right: 2rem; 
+    }
 }
 
 h2#titre {

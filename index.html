@@ -1,67 +1,71 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IDFcinémas</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="shortcut icon" href="images/pin-cinema.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-  
-     <link rel="stylesheet" href="style.css">
-     <link rel="stylesheet" href="popup-leaftet.css">
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="popup-leaftet.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
+
 <body>
-    <nav id="navbar" class="navbar"> <!--CSS fini-->
+    <nav id="navbar" class="navbar">
         <div class="logo me-auto">
             <a href="index.html">
                 <img src="images/LOGO.svg" alt="logo">
             </a>
-            
-          </div>
+        </div>
         <ul>
             <li><a href="#titre">Accueil</a></li>
             <li><a href="#carte">Carte</a></li>
             <li><a href="#projet">Projet</a></li>
-            <li id="sources"><a href="#sources">Sources</a></li>
-    </nav>   
-    <div class="section_titre"> <!--CSS fini-->
+        </ul>
+    </nav>
+
+
+
+
+    <div class="section_titre">
         <h2 id="titre">[RE]DECOUVREZ LES CINEMAS DE VOS REGIONS</h2>
-        <img src="images/cinema.svg" alt="cinema">
+        <img src="images/salle-de-cinema.png" alt="cinema">
     </div>
 
     <div class="section_carte">
-        <img src="images/carte.svg" alt="pictogramme_carte">
-            <h3 id="carte">CARTE</h3>
-        </div>
-            <div id="map"></div>
-
-
+        <i class="bi bi-map-fill"></i>
+        <h3 id="carte">CARTE</h3>
+    </div>
+    
+    <div id="map"></div>
+    
     <div class="section_projet">
         <div class="titre_projet">
-            <img src="images/graphique.svg" alt="pictogramme_graphique">
+            <i class="bi bi-pie-chart-fill"></i>
             <h3 id="projet">LE PROJET</h3>
         </div>
         <ul>
-            <li><p>Jeu de données traité par la <a href="https://data.iledefrance.fr/explore/dataset/les_salles_de_cinemas_en_ile-de-france/" target="_blank">Région Île de France</a>, issu du <a href="https://www.data.gouv.fr/fr/datasets/liste-des-etablissements-cinematographiques-actifs-1" target="_blank">Centre National du Cinéma et de l’image animée (CNC)</a>.</p></li>
+            <li>Jeu de données traité par la <a href="https://data.iledefrance.fr/explore/dataset/les_salles_de_cinemas_en_ile-de-france/" target="_blank">Région Île de France</a>, issu du <a href="https://www.data.gouv.fr/fr/datasets/liste-des-etablissements-cinematographiques-actifs-1" target="_blank">Centre National du Cinéma et de l’image animée (CNC)</a>.</li>
             <li><img src="images/LogoIDF.svg" alt="logoIDF"></li>
             <li><img src="images/LogoCNC.svg" alt="logoCNC"></li>
         </ul>
         <ul>
             <li><img src="images/logoIUT.png" alt="Logo IUT de Cergy Pontoise"></li>
             <li><img src="images/logoMMI.png" alt="Logo Métiers du Multimédia et de l'Internet"></li>
-            <li id="texte">Ce site et cette datavisualisation ont été réalisé dans le cadre d’un projet universitaire : Concevoir des visualisations de données pour le web. Nous sommes 4 étudiants de 2e année du BUT Métiers du Multimédia et de l’Internet de l’IUT de Cergy Pontoise. Site et data visualisation  fait par ABAF.font, avec Falou Badiane, Abby Baud-Nazebi, Amîn Benamaouche, Baptiste Cateland Wambre </li>
+            <li id="texte">Ce site et cette datavisualisation ont été réalisé dans le cadre d’un projet universitaire : Concevoir des visualisations de données pour le web. Nous sommes 4 étudiants de 2e année du BUT Métiers du Multimédia et de l’Internet de l’IUT de Cergy Pontoise. Site et data visualisation fait par ABAF.font, avec Falou Badiane, Abby Baud-Nazebi, Amîn Benamaouche, Baptiste Cateland Wambre </li>
         </ul>
-        
-        </div>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   
-        <script src="donnees.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="donnees.js"></script>
 </body>
+
 </html>
