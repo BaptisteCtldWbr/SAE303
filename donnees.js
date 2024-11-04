@@ -74,7 +74,36 @@ function addDataToMap(map, geoJSONData) {
     iconAnchor: [16, 32],        
     popupAnchor: [0, -32]        
   });
+  const imgUrls = [
+    'FlagofFrance_6529.png',
+    'UnitedStatesflag_6361.png',
+    'flagoftheeuropeanunion_6535.png',
+    'sidebar_sites_earth_world_globe_20458.png'
+];
+const images = imgUrls.map(url => {
+    const img = new Image();
+    img.src = url;
+    return img;
+});
 
+const imagePlugin = {
+    afterDraw: (chart) => {
+        const ctx = chart.ctx;
+        const chartArea = chart.chartArea;
+        chart.data.datasets.forEach((dataset) => {
+            const meta = chart.getDatasetMeta(0);
+            meta.data.forEach((arc, index) => {
+                const radius = (arc.outerRadius + arc.innerRadius) / 2;
+                const angle = (arc.startAngle + arc.endAngle) / 2;
+                const x = arc.x + radius * Math.cos(angle) - 5; // Centre ajusté pour 10px
+                const y = arc.y + radius * Math.sin(angle) - 5; // Centre ajusté pour 10px
+                if (images[index].complete) {
+                    ctx.drawImage(images[index], x, y, 15, 15); // Taille réduite à 20x20 pixels
+                }
+            });
+        });
+    }
+};
   L.geoJSON(geoJSONData, {
     pointToLayer: function(feature,latlng) {
       return L.marker(latlng, {icon : iconCinema});
@@ -98,6 +127,34 @@ function addDataToMap(map, geoJSONData) {
           "<p class=\"proprietePopup\"><i class=\"bi bi-palette\"></i> Art et essai : " + feature.properties.ae + " (" + feature.properties.films_art_et_essai + " films)</p>" +
         "</article>";
       layer.bindPopup(popupContent);
+      layer.on('popupopen', function () {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    label: 'Part de marché',
+                    data: [
+                        feature.properties.pdm_en_entrees_des_films_francais,
+                        feature.properties.pdm_en_entrees_des_films_americains,
+                        feature.properties.pdm_en_entrees_des_films_europeens,
+                        feature.properties.pdm_en_entrees_des_autres_films
+                    ],
+                    backgroundColor: ['#C63D31', '#1E90FF', '#FFD700', '#32CD32'],
+                    borderColor: '#25303B',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: false, text: 'Répartition des entrées par origine des films' }
+                }
+            },
+            plugins: [imagePlugin]
+        });
+    });
     }
   }).eachLayer(function(layer) {
     markers.addLayer(layer); // Ajouter chaque marqueur au cluster
