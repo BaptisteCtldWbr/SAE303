@@ -108,19 +108,20 @@ ul {
     display: flex;
     align-items: center;
     list-style: none;
+    padding: 0px;
 }
 
 ul li {
     margin-right: 2rem;
 }
-ul p {
+ul p , ul li{
     margin-right: 2rem;
     font-family: Montserrat;
     font-size: 1rem;
 }
 
 ul img {
-    width: 15rem; 
+    max-width: 150px;
     height: auto; 
 }
 
