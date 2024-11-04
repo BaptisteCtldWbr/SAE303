@@ -109,23 +109,26 @@ const imagePlugin = {
       return L.marker(latlng, {icon : iconCinema});
     },
     onEachFeature: function (feature, layer) {
+      const canvasId = 'myChart' + feature.properties.ndeg_auto;
       let popupContent = 
-        "<article class=\"popupCinema\">" +
-          "<div class=\"enteteCinema\">" +
-          "<img src=\"images/pin-cinema.svg\" alt=\"Pin Cinema\">" +
-            "<div class=\"enteteCinema-texte\">" +
-              "<p class=\"nomCinema\">" + feature.properties.nom + "</p>" +
-              "<p class=\"villeCinema\">" + feature.properties.commune + "</p>" +
-            "</div>" +
-          "</div>" +
-          "<p class=\"proprietePopup\"><i class=\"bi bi-geo-fill\"></i> " + feature.properties.adresse + "</p>" +
-          "<p class=\"proprietePopup\"><i class=\"bi bi-tv-fill\"></i> " + feature.properties.ecrans + " salle pour " + feature.properties.fauteuils + " fauteuils</p>" +
-          "<p class=\"proprietePopup\"><i class=\"bi bi-ticket-perforated-fill\"></i> " + feature.properties.entrees + " entrées (+" + feature.properties.evolution_entrees +"% depuis 2015)</p>" +
-          "<p class=\"proprietePopup\"><i class=\"bi bi-film\"></i> " + feature.properties.nombre_de_films_programmes + " films projetés</p>" + 
-          "<p class=\"proprietePopup\"><i class=\"bi bi-tv-fill\"></i> " + feature.properties.seances + " séances en 2021</p>" + 
-          "<p class=\"proprietePopup\"><i class=\"bi bi-building-fill\"></i> Séances programmées par " + feature.properties.programmateur + "</p>" +
-          "<p class=\"proprietePopup\"><i class=\"bi bi-palette\"></i> Art et essai : " + feature.properties.ae + " (" + feature.properties.films_art_et_essai + " films)</p>" +
-        "</article>";
+        `<article class="popupCinema">
+        <div class="enteteCinema">
+          <img src="images/pin-cinema.svg" alt="Pin Cinema">
+          <div class="enteteCinema-texte">
+            <p class="nomCinema">{{ feature.properties.nom }}</p>
+            <p class="villeCinema">{{ feature.properties.commune }}</p>
+          </div>
+        </div>
+        <p class="proprietePopup"><i class="bi bi-geo-fill"></i> ${feature.properties.adresse}</p>
+        <p class="proprietePopup"><i class="bi bi-tv-fill"></i> ${ feature.properties.ecrans } salle pour ${ feature.properties.fauteuils } fauteuils</p>
+        <p class="proprietePopup"><i class="bi bi-ticket-perforated-fill"></i> ${feature.properties.entrees } entrées ( ${ feature.properties.evolution_entrees } % depuis 2015)</p>
+        <p class="proprietePopup"><i class="bi bi-film"></i> ${feature.properties.nombre_de_films_programmes } films projetés</p>
+        <p class="proprietePopup"><i class="bi bi-tv-fill"></i> ${ feature.properties.seances } séances en 2021</p>
+        <p class="proprietePopup"><i class="bi bi-pie-chart"></i> Part des entrées : </p>
+        <canvas id="${ canvasId }" width="100" height="100"></canvas>
+        <p class="proprietePopup"><i class="bi bi-building-fill"></i> Séances programmées par ${ feature.properties.programmateur }</p>
+        <p class="proprietePopup"><i class="bi bi-palette"></i> Art et essai : ${ feature.properties.ae } (${ feature.properties.films_art_et_essai } films)</p>
+      </article>`;
       layer.bindPopup(popupContent);
       layer.on('popupopen', function () {
         const ctx = document.getElementById(canvasId).getContext('2d');
@@ -140,7 +143,7 @@ const imagePlugin = {
                         feature.properties.pdm_en_entrees_des_films_europeens,
                         feature.properties.pdm_en_entrees_des_autres_films
                     ],
-                    backgroundColor: ['#C63D31', '#1E90FF', '#FFD700', '#32CD32'],
+                    backgroundColor: ['#C63D31', '#C63D31', '#C63D31', '#C63D31'],
                     borderColor: '#25303B',
                     borderWidth: 1
                 }]
