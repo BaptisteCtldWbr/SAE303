@@ -81,15 +81,22 @@ function addDataToMap(map, geoJSONData) {
     },
     onEachFeature: function (feature, layer) {
       let popupContent = 
-                         "<span class=\"nomCinema\">" + feature.properties.nom + "</span><br>" +
-                         "<span class=\"proprietePopup\">" + feature.properties.adresse + " "+ feature.properties.commune +  "</span><br>" +
-                         "<span class=\"proprietePopup\">" + feature.properties.ecrans + " salle pour " + feature.properties.fauteuils + " fauteuils</span><br>" +
-                         "<span class=\"proprietePopup\">Nombre d'écrans : </span>" + feature.properties.ecrans + "<br>" +
-                         "<span class=\"proprietePopup\">Nombre de fauteuils : </span>" + feature.properties.fauteuils + "<br>" +
-                         "<span class=\"proprietePopup\">" + feature.properties.entrees + " entrées (+" + feature.properties.evolution_entrees +"% depuis 2015)</span><br>" +
-                         "<span class=\"proprietePopup\">" + feature.properties.seances + " séances en 2016</span>" + 
-                         "<span class=\"proprietePopup\">Séances programmées par " + feature.properties.programmateur + "</span><br>" +
-                         "<span class=\"proprietePopup\">Art et essai : " + feature.properties.ae + " (" + feature.properties.films_art_et_essai + " films)</span><br>";
+        "<article class=\"popupCinema\">" +
+          "<div class=\"enteteCinema\">" +
+          "<img src=\"images/pin-cinema.svg\" alt=\"Pin Cinema\">" +
+            "<div class=\"enteteCinema-texte\">" +
+              "<p class=\"nomCinema\">" + feature.properties.nom + "</p>" +
+              "<p class=\"villeCinema\">" + feature.properties.commune + "</p>" +
+            "</div>" +
+          "</div>" +
+          "<p class=\"proprietePopup\"><i class=\"bi bi-geo-fill\"></i> " + feature.properties.adresse + "</p>" +
+          "<p class=\"proprietePopup\"><i class=\"bi bi-tv-fill\"></i> " + feature.properties.ecrans + " salle pour " + feature.properties.fauteuils + " fauteuils</p>" +
+          "<p class=\"proprietePopup\"><i class=\"bi bi-ticket-perforated-fill\"></i> " + feature.properties.entrees + " entrées (+" + feature.properties.evolution_entrees +"% depuis 2015)</p>" +
+          "<p class=\"proprietePopup\"><i class=\"bi bi-film\"></i> " + feature.properties.nombre_de_films_programmes + " films projetés</p>" + 
+          "<p class=\"proprietePopup\"><i class=\"bi bi-tv-fill\"></i> " + feature.properties.seances + " séances en 2021</p>" + 
+          "<p class=\"proprietePopup\"><i class=\"bi bi-building-fill\"></i> Séances programmées par " + feature.properties.programmateur + "</p>" +
+          "<p class=\"proprietePopup\"><i class=\"bi bi-palette\"></i> Art et essai : " + feature.properties.ae + " (" + feature.properties.films_art_et_essai + " films)</p>" +
+        "</article>";
       layer.bindPopup(popupContent);
     }
   }).eachLayer(function(layer) {

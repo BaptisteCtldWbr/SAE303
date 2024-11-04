@@ -1,0 +1,32 @@
+.leaflet-popup-content-wrapper{
+    border: #25303B solid 1px;
+    background: linear-gradient(#25303B44, #6583A144);
+    backdrop-filter: blur(10px);
+}
+
+.leaflet-popup-tip{
+    background: linear-gradient(#25303B, #6583A1);
+}
+
+article.popupCinema p{
+    margin: 2px;
+    font-family: Montserrat;
+    i{
+        margin-right: 3px;
+    }
+}
+
+.enteteCinema{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    img{
+        height: 50px;
+    }
+    p.nomCinema{
+        font-size: 3em;
+        font-family: Bebas Neue;
+        color: #25303B;
+        line-height: 1;
+    }
+}
