@@ -131,6 +131,10 @@ ul img {
     font-size: 1rem;
     margin-top: 2rem;
 }
+canvas {
+    max-width: 80px;
+    max-height: 80px;
+}
 
 /*Pour les téléphones*/
 @media (max-width: 70rem) {

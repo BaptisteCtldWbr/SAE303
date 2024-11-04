@@ -125,7 +125,7 @@ const imagePlugin = {
         <p class="proprietePopup"><i class="bi bi-film"></i> ${feature.properties.nombre_de_films_programmes } films projetés</p>
         <p class="proprietePopup"><i class="bi bi-tv-fill"></i> ${ feature.properties.seances } séances en 2021</p>
         <p class="proprietePopup"><i class="bi bi-pie-chart"></i> Part des entrées : </p>
-        <canvas id="${ canvasId }" width="100" height="100"></canvas>
+        <canvas id="${ canvasId }"></canvas>
         <p class="proprietePopup"><i class="bi bi-building-fill"></i> Séances programmées par ${ feature.properties.programmateur }</p>
         <p class="proprietePopup"><i class="bi bi-palette"></i> Art et essai : ${ feature.properties.ae } (${ feature.properties.films_art_et_essai } films)</p>
       </article>`;
