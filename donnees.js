@@ -115,8 +115,8 @@ const imagePlugin = {
         <div class="enteteCinema">
           <img src="images/pin-cinema.svg" alt="Pin Cinema">
           <div class="enteteCinema-texte">
-            <p class="nomCinema">{{ feature.properties.nom }}</p>
-            <p class="villeCinema">{{ feature.properties.commune }}</p>
+            <p class="nomCinema">${ feature.properties.nom }</p>
+            <p class="villeCinema">${ feature.properties.commune }</p>
           </div>
         </div>
         <p class="proprietePopup"><i class="bi bi-geo-fill"></i> ${feature.properties.adresse}</p>
