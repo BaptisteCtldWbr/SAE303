@@ -75,10 +75,10 @@ function addDataToMap(map, geoJSONData) {
     popupAnchor: [0, -32]        
   });
   const imgUrls = [
-    'FlagofFrance_6529.png',
-    'UnitedStatesflag_6361.png',
-    'flagoftheeuropeanunion_6535.png',
-    'sidebar_sites_earth_world_globe_20458.png'
+    'images/FlagofFrance_6529.png',
+    'images/UnitedStatesflag_6361.png',
+    'images/flagoftheeuropeanunion_6535.png',
+    'images/sidebar_sites_earth_world_globe_20458.png'
 ];
 const images = imgUrls.map(url => {
     const img = new Image();
