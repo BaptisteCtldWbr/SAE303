@@ -9,7 +9,8 @@
      crossorigin=""/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="style.css">
+  
+     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav id="navbar" class="navbar"> <!--CSS fini-->
@@ -17,27 +18,42 @@
             <a href="index.html">
                 <img src="images/LOGO.svg" alt="logo">
             </a>
-        </div>
+            
+          </div>
         <ul>
           <li>Accueil</li>
           <li>Carte</li>
           <li>Projet</li>
-          <li>Sources</li>
+          <li id="sources">Sources</li>
         </ul>
-    </nav>
-    <h2 id="titre">[RE]DECOUVREZ LES CINEMAS DE VOS REGIONS</h2>
-    <h3 id="carte">CARTE</h3>
-    <div id="map"></div>
-    <h3 id="carte">LE PROJET</h3>
-    <ul>
-        <li><p>Jeu de données traité par la Région Île de France, issu du Centre National du Cinéma et de l’image animée (CNC) </p></li>
-        <li></li>
-        <li></li>
-    </ul>
-    <p>Ce site et cette datavisualisation ont été réalisé dans le cadre d’un projet universitaire : Concevoir des visualisations de données pour le web. Nous sommes 4 étudiants de 2e année du BUT Métiers du Multimédia et de l’Internet de l’IUT de Cergy Pontoise. Site et data visualisation fait par ABAF.font, avec Falou Badiane, Abby Baud-Nazebi, Amîn Benamaouche, Baptiste Cateland Wambre </p>
+    </nav>   
+    <div class="section_titre"> <!--CSS fini-->
+        <h2 id="titre">[RE]DECOUVREZ LES CINEMAS DE VOS REGIONS</h2>
+        <img src="images/cinema.svg" alt="cinema">
+    </div>
+
+    <div class="section_carte">
+        <img src="images/carte.svg" alt="pictogramme_carte">
+            <h3 id="carte">CARTE</h3>
+        </div>
+            <div id="map"></div>
+
+
+    <div class="section_projet">
+        <div class="titre_projet">
+            <img src="images/graphique.svg" alt="pictogramme_graphique">
+            <h3 id="projet">LE PROJET</h3>
+        </div>
+        <ul>
+            <li><p>Jeu de données traité par la Région Île de France, issu du Centre National du Cinéma et de l’image animée (CNC) </p></li>
+            <li><img src="images/LogoIDF.svg" alt="logoIDF"></li>
+            <li><img src="images/LogoCNC.svg" alt="logoCNC"></li>
+        </ul>
+        <p id="texte">Ce site et cette datavisualisation ont été réalisé dans le cadre d’un projet universitaire : Concevoir des visualisations de données pour le web. Nous sommes 4 étudiants de 2e année du BUT Métiers du Multimédia et de l’Internet de l’IUT de Cergy Pontoise. Site et data visualisation  fait par ABAF.font, avec Falou Badiane, Abby Baud-Nazebi, Amîn Benamaouche, Baptiste Cateland Wambre </p>
+        </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-    <script src="donnees.js"></script>
+        <script src="donnees.js"></script>
 </body>
 </html>

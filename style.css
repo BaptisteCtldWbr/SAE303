@@ -1,17 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 body {
     background-color: #25303B;
     color: white;
-    padding-left: 10%;
-    padding-right: 10%;
-    margin: 0;
-    font-family: 'Bebas Neue', sans-serif;
+    padding-left: 20rem;
+    padding-right: 20rem;
 }
 
 #map {
     height: 500px;
-    width: 100%;
 }
 
 .popup .nomCinema {
@@ -22,61 +21,199 @@ body {
     font-weight: 600;
 }
 
+/*PARTIE NAVIGATION*/
 #navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #333;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center; 
+    gap: 4rem;
 }
 
-#navbar .logo img {
-    width: 100px;
-    height: auto;
+#navbar .logo {
+    size: 10rem;
 }
 
 #navbar ul {
-    display: flex;
-    list-style: none;
+    display: flex; 
+    justify-content: flex-end; 
+    padding-right: 10rem; 
+    list-style: none; 
     gap: 2rem;
-    margin: 0;
-    padding: 0;
 }
 
 #navbar ul li {
     cursor: pointer;
     font-size: 1.5rem;
+    font-family: Bebas Neue;
 }
 
-@media (max-width: 768px) {
-    body {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
+/*PARTIE TITRE*/
+.section_titre {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10rem;
+    padding-right: 15rem;
+    padding-top: 3rem;
+}
 
+.section_titre img {
+    margin-right: 2rem; 
+}
+
+h2#titre {
+    word-break: break-word;
+    font-size: 3.25rem;
+    font-weight: lighter;
+    font-family: Bebas Neue;
+}
+
+/*PARTIE CARTE*/
+.section_carte {
+    display: flex;
+    align-items: left;
+    justify-content: flex-start;
+}
+
+
+h3#carte {
+    font-family: Bebas Neue;
+    margin-left: 1rem;
+    font-size: 2rem;
+    font-weight: lighter;
+}
+
+/* PARTIE PROJET */
+.section_projet {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    justify-content: flex-start;
+}
+
+.titre_projet {
+    display: flex; 
+    align-items: center;
+    justify-content: flex-start;
+}
+
+h3#projet {
+    font-family: Bebas Neue;
+    margin-left: 1rem;
+    font-size: 2rem;
+    font-weight: lighter;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+ul li {
+    margin-right: 2rem;
+}
+ul p {
+    margin-right: 2rem;
+    font-family: Montserrat;
+    font-size: 1rem;
+}
+
+ul img {
+    width: 15rem; 
+    height: auto; 
+}
+
+.section_projet p#texte {
+    text-align: left;
+    font-family: Montserrat;
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+/*Pour les téléphones*/
+@media (max-width: 70rem) {
+    body {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
     #navbar {
-        flex-direction: column;
-        align-items: flex-start;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        justify-items: center;
+        text-align: center;
     }
 
     #navbar ul {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 0;
+        margin: 0;
     }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding-left: 2%;
-        padding-right: 2%;
-    }
-
     #navbar ul li {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+    }
+
+    .section_titre {
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+        padding-top: 2rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h2#titre {
+        font-size: 2rem;
+        text-align: left;
+    }
+    
+    .section_titre img {
+        margin-right: 2rem; 
+        max-width: 20rem; 
+        height: auto;
+        align-items: center;
+    }
+
+    .section_carte {
+        flex-direction: row;
+        align-items: left;
+        text-align: left;
+    }
+
+    h3#carte {
+        font-size: 1.5rem;
+        margin-left: 0.5rem;
     }
 
     #map {
-        height: 300px;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%; 
+    }
+    
+
+    .section_projet ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section_projet ul li,
+    .section_projet ul p {
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .section_projet ul img {
+        width: 10rem;
+    }
+
+    .section_projet p#texte {
+        font-size: 0.9rem;
+        margin-top: 1rem;
+    }
+    h3#projet {
+        font-size: 1.5rem;
+        margin-left: 0.5rem;
     }
 }
