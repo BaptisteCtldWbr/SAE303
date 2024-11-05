@@ -1,27 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+/*GENERAL*/
+
+html{
+    --bleuIDFM: #25303B;
+    --rougeIDF: #E42313;
+    scroll-behavior: smooth;
+}
 
 body {
-    background-color: #25303B;
+    background-color: var(--bleuIDFM);
     color: white;
-    margin-left: 20rem;
-    margin-right: 20rem;
+    margin: 50px 20vw;
 }
 
-#map {
-    aspect-ratio: 5/3;
+h1, h2, nav li a{
+    font-family: Bebas Neue;
 }
 
-/*.popup .nomCinema {
-    font-weight: 700;
-    font-size: 1.5rem;
+p, li{
+    font-family: Montserrat;
+    line-height: 1.2;
 }
-.popup .proprietePopup {
-    font-weight: 600;
-}*/
 
-/*PARTIE NAVIGATION*/
+a{
+    color: white;
+}
+
+em{
+    font-style: italic;
+}
+
+div.titre{
+    display: flex; 
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 30px 0px;
+    h2{
+        font-size: 2em;
+    }
+    i{
+        font-size: 1.5em;
+    }
+}
+
+/*NAVIGATION*/
+
 #navbar {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -33,103 +59,62 @@ body {
     ul {
         display: flex; 
         justify-content: flex-end; 
-        margin-right: 10rem; 
         list-style: none; 
         gap: 2rem;
     }
     ul li {
         cursor: pointer;
         font-size: 1.5rem;
-        font-family: Bebas Neue;
+    }
+    a{
+        text-decoration: none;
     }
 }
 
-/*PARTIE TITRE*/
-.section_titre {
+/*HERO*/
+
+.hero {
+    margin: 100px 0px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    margin-left: 10rem;
-    margin-right: 15rem;
-    margin-top: 3rem;
-    img {
-        margin-right: 2rem; 
+    justify-content: space-between;
+    gap: 50px;
+    h1{
+        font-size: 3em;
+        min-width: 150px;
+    }
+    img{
+        max-width: 50%;
+        min-width: 150px !important;
     }
 }
 
-h2#titre {
-    word-break: break-word;
-    font-size: 3.25rem;
-    font-weight: lighter;
-    font-family: Bebas Neue;
+/*CARTE*/
+
+div#map {
+    width: 100%;
+    aspect-ratio: 5/3;
 }
 
-/*PARTIE CARTE*/
-.section_carte {
-    display: flex;
-    align-items: left;
-    justify-content: flex-start;
-}
-
-
-h3#carte {
-    font-family: Bebas Neue;
-    margin-left: 1rem;
-    font-size: 2rem;
-    font-weight: lighter;
-}
-
-/* PARTIE PROJET */
-.section_projet {
+/*PROJET */
+#projet{
     display: flex;
     flex-direction: column;
     align-items: flex-start; 
     justify-content: flex-start;
 }
 
-.titre_projet {
-    display: flex; 
-    align-items: center;
-    justify-content: flex-start;
-}
-
-h3#projet {
-    font-family: Bebas Neue;
-    margin-left: 1rem;
-    font-size: 2rem;
-    font-weight: lighter;
-}
-
-ul {
+section#projet ul {
     display: flex;
     align-items: center;
     list-style: none;
     padding: 0px;
-}
-
-ul li {
-    margin-right: 2rem;
-}
-ul p , ul li{
-    margin-right: 2rem;
-    font-family: Montserrat;
-    font-size: 1rem;
-}
-
-ul img {
-    max-width: 150px;
-    height: auto; 
-}
-
-.section_projet p#texte {
-    text-align: left;
-    font-family: Montserrat;
-    font-size: 1rem;
-    margin-top: 2rem;
-}
-canvas {
-    max-width: 80px;
-    max-height: 80px;
+    gap: 30px;
+    margin: 15px 0px;
+    img {
+        max-width: 150px;
+        height: auto; 
+    }
 }
 
 /*Pour les téléphones*/
@@ -163,11 +148,6 @@ canvas {
         flex-direction: column;
         align-items: center;
     }
-
-    h2#titre {
-        font-size: 2rem;
-        text-align: left;
-    }
     
     .section_titre img {
         margin-right: 2rem; 
@@ -180,11 +160,6 @@ canvas {
         flex-direction: row;
         align-items: left;
         text-align: left;
-    }
-
-    h3#carte {
-        font-size: 1.5rem;
-        margin-left: 0.5rem;
     }
 
     #map {
@@ -213,15 +188,4 @@ canvas {
         font-size: 0.9rem;
         margin-top: 1rem;
     }
-    h3#projet {
-        font-size: 1.5rem;
-        margin-left: 0.5rem;
-    }
-}
-html {
-    scroll-behavior: smooth;
-}
-
-a {
-    color: white;
 }

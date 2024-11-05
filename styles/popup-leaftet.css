@@ -13,6 +13,7 @@ article.popupCinema p{
     font-family: Montserrat;
     i{
         margin-right: 3px;
+        /* color: var(--rougeIDF); */
     }
 }
 
@@ -29,4 +30,9 @@ article.popupCinema p{
         color: #25303B;
         line-height: 1;
     }
+}
+
+canvas{
+    aspect-ratio: 1;
+    max-height: 120px;
 }

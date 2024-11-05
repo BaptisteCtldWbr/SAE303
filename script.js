@@ -1,5 +1,5 @@
- // Initialiser la carte
- function initMap() {
+// Initialiser la carte
+function initMap() {
   let map = L.map('map').setView([48.8566, 2.3522], 12); // Paris
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
@@ -16,7 +16,7 @@ async function recupererDonnes(url) {
 
 // Fonction pour convertir les données JSON en GeoJSON
 function convertToGeoJSON(data) {
-  return data.map(function(cinema) {
+  return data.map(function (cinema) {
     let coords = cinema.geo.split(',').map(Number);
 
     return {
@@ -70,96 +70,96 @@ function addDataToMap(map, geoJSONData) {
 
   const iconCinema = L.icon({
     iconUrl: 'images/pin-cinema.svg',
-    iconSize: [32, 32],          
-    iconAnchor: [16, 32],        
-    popupAnchor: [0, -32]        
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
   });
   const imgUrls = [
     'images/FlagofFrance_6529.png',
     'images/UnitedStatesflag_6361.png',
     'images/flagoftheeuropeanunion_6535.png',
     'images/sidebar_sites_earth_world_globe_20458.png'
-];
-const images = imgUrls.map(url => {
+  ];
+  const images = imgUrls.map(url => {
     const img = new Image();
     img.src = url;
     return img;
-});
+  });
 
-const imagePlugin = {
+  const imagePlugin = {
     afterDraw: (chart) => {
-        const ctx = chart.ctx;
-        const chartArea = chart.chartArea;
-        chart.data.datasets.forEach((dataset) => {
-            const meta = chart.getDatasetMeta(0);
-            meta.data.forEach((arc, index) => {
-                const radius = (arc.outerRadius + arc.innerRadius) / 2;
-                const angle = (arc.startAngle + arc.endAngle) / 2;
-                const x = arc.x + radius * Math.cos(angle) - 5; // Centre ajusté pour 10px
-                const y = arc.y + radius * Math.sin(angle) - 5; // Centre ajusté pour 10px
-                if (images[index].complete) {
-                    ctx.drawImage(images[index], x, y, 15, 15); // Taille réduite à 20x20 pixels
-                }
-            });
+      const ctx = chart.ctx;
+      const chartArea = chart.chartArea;
+      chart.data.datasets.forEach((dataset) => {
+        const meta = chart.getDatasetMeta(0);
+        meta.data.forEach((arc, index) => {
+          const radius = (arc.outerRadius + arc.innerRadius) / 2;
+          const angle = (arc.startAngle + arc.endAngle) / 2;
+          const x = arc.x + radius * Math.cos(angle) - 5; // Centre ajusté pour 10px
+          const y = arc.y + radius * Math.sin(angle) - 5; // Centre ajusté pour 10px
+          if (images[index].complete) {
+            ctx.drawImage(images[index], x, y, 15, 15); // Taille réduite à 20x20 pixels
+          }
         });
+      });
     }
-};
+  };
   L.geoJSON(geoJSONData, {
-    pointToLayer: function(feature,latlng) {
-      return L.marker(latlng, {icon : iconCinema});
+    pointToLayer: function (feature, latlng) {
+      return L.marker(latlng, { icon: iconCinema });
     },
     onEachFeature: function (feature, layer) {
       const canvasId = 'myChart' + feature.properties.ndeg_auto;
-      let popupContent = 
+      let popupContent =
         `<article class="popupCinema">
         <div class="enteteCinema">
           <img src="images/pin-cinema.svg" alt="Pin Cinema">
           <div class="enteteCinema-texte">
-            <p class="nomCinema">${ feature.properties.nom }</p>
-            <p class="villeCinema">${ feature.properties.commune }</p>
+            <p class="nomCinema">${feature.properties.nom}</p>
+            <p class="villeCinema">${feature.properties.commune}</p>
           </div>
         </div>
         <p class="proprietePopup"><i class="bi bi-geo-fill"></i> ${feature.properties.adresse}</p>
-        <p class="proprietePopup"><i class="bi bi-tv-fill"></i> ${ feature.properties.ecrans } salle pour ${ feature.properties.fauteuils } fauteuils</p>
-        <p class="proprietePopup"><i class="bi bi-ticket-perforated-fill"></i> ${feature.properties.entrees } entrées ( ${ feature.properties.evolution_entrees } % depuis 2015)</p>
-        <p class="proprietePopup"><i class="bi bi-film"></i> ${feature.properties.nombre_de_films_programmes } films projetés</p>
-        <p class="proprietePopup"><i class="bi bi-tv-fill"></i> ${ feature.properties.seances } séances en 2021</p>
+        <p class="proprietePopup"><i class="bi bi-tv-fill"></i> ${feature.properties.ecrans} salle pour ${feature.properties.fauteuils} fauteuils</p>
+        <p class="proprietePopup"><i class="bi bi-ticket-perforated-fill"></i> ${feature.properties.entrees} entrées (+${feature.properties.evolution_entrees} % depuis 2015)</p>
+        <p class="proprietePopup"><i class="bi bi-film"></i> ${feature.properties.nombre_de_films_programmes} films projetés</p>
+        <p class="proprietePopup"><i class="bi bi-tv-fill"></i> ${feature.properties.seances} séances en 2021</p>
         <p class="proprietePopup"><i class="bi bi-pie-chart"></i> Part des entrées : </p>
-        <canvas id="${ canvasId }"></canvas>
-        <p class="proprietePopup"><i class="bi bi-building-fill"></i> Séances programmées par ${ feature.properties.programmateur }</p>
-        <p class="proprietePopup"><i class="bi bi-palette"></i> Art et essai : ${ feature.properties.ae } (${ feature.properties.films_art_et_essai } films)</p>
+        <canvas id="${canvasId}"></canvas>
+        <p class="proprietePopup"><i class="bi bi-building-fill"></i> Séances programmées par ${feature.properties.programmateur}</p>
+        <p class="proprietePopup"><i class="bi bi-palette"></i> Art et essai : ${feature.properties.ae} (${feature.properties.films_art_et_essai} films)</p>
       </article>`;
       layer.bindPopup(popupContent);
       layer.on('popupopen', function () {
         const ctx = document.getElementById(canvasId).getContext('2d');
         new Chart(ctx, {
-            type: 'pie',
-            data: {
-                datasets: [{
-                    label: 'Part de marché',
-                    data: [
-                        feature.properties.pdm_en_entrees_des_films_francais,
-                        feature.properties.pdm_en_entrees_des_films_americains,
-                        feature.properties.pdm_en_entrees_des_films_europeens,
-                        feature.properties.pdm_en_entrees_des_autres_films
-                    ],
-                    backgroundColor: ['#C63D31', '#C63D31', '#C63D31', '#C63D31'],
-                    borderColor: '#25303B',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'top' },
-                    title: { display: false, text: 'Répartition des entrées par origine des films' }
-                }
-            },
-            plugins: [imagePlugin]
+          type: 'pie',
+          data: {
+            datasets: [{
+              label: 'Part de marché',
+              data: [
+                feature.properties.pdm_en_entrees_des_films_francais,
+                feature.properties.pdm_en_entrees_des_films_americains,
+                feature.properties.pdm_en_entrees_des_films_europeens,
+                feature.properties.pdm_en_entrees_des_autres_films
+              ],
+              backgroundColor: ['#C63D31', '#C63D31', '#C63D31', '#C63D31'],
+              borderColor: '#25303B',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'top' },
+              title: { display: false, text: 'Répartition des entrées par origine des films' }
+            }
+          },
+          plugins: [imagePlugin]
         });
-    });
+      });
     }
-  }).eachLayer(function(layer) {
+  }).eachLayer(function (layer) {
     markers.addLayer(layer); // Ajouter chaque marqueur au cluster
   });
 
@@ -168,12 +168,12 @@ const imagePlugin = {
 
 
 
-let map = initMap(); 
-recupererDonnes('geo-les_salles_de_cinemas_en_ile-de-france.json') 
+let map = initMap();
+recupererDonnes('data/geo-les_salles_de_cinemas_en_ile-de-france.json')
   .then(data => {
     let geoJSONData = {
       "type": "FeatureCollection",
-      "features": convertToGeoJSON(data) 
+      "features": convertToGeoJSON(data)
     };
-    addDataToMap(map, geoJSONData); 
+    addDataToMap(map, geoJSONData);
   });
