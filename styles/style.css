@@ -15,6 +15,12 @@ body {
     margin: 50px 20vw;
 }
 
+@media (max-width: 1150px) {
+    body{
+        margin: 50px;
+    }
+}
+
 h1, h2, nav li a{
     font-family: Bebas Neue;
 }
@@ -48,17 +54,19 @@ div.titre{
 
 /*NAVIGATION*/
 
-#navbar {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center; 
-    gap: 4rem;
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
     .logo {
         size: 10rem;
     }
     ul {
         display: flex; 
         justify-content: flex-end; 
+        flex-wrap: wrap;
         list-style: none; 
         gap: 2rem;
     }
@@ -71,6 +79,15 @@ div.titre{
     }
 }
 
+@media (max-width: 1150px) {
+    nav{
+        justify-content: center;
+        ul{
+            justify-content: center;
+        }
+    }
+}
+
 /*HERO*/
 
 .hero {
@@ -78,14 +95,30 @@ div.titre{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 50px;
+    flex-wrap: wrap;
+    gap: 2%;
     h1{
         font-size: 3em;
+        max-width: 49%;
         min-width: 150px;
     }
     img{
-        max-width: 50%;
-        min-width: 150px !important;
+        max-width: 49%;
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 680px) {
+    .hero{
+        gap: 30px;
+        h1{
+            width: 100%;
+            max-width: none;
+        }
+        img{
+            width: 100%;
+            max-width: none;
+        }
     }
 }
 
@@ -104,88 +137,35 @@ div#map {
     justify-content: flex-start;
 }
 
-section#projet ul {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    padding: 0px;
+article.bloc-projet {
+    display: grid;
     gap: 30px;
-    margin: 15px 0px;
-    img {
-        max-width: 150px;
-        height: auto; 
+    align-items: center;
+    margin: 30px 0px;
+    &#credits{
+        grid-template-columns: 1fr 1fr 3fr;
+    }
+    &#iutmmi{
+        grid-template-columns: 3fr 1fr 1fr;
+    }
+    img{
+        width: 100%;
     }
 }
 
-/*Pour les téléphones*/
-@media (max-width: 70rem) {
-    body {
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
-    }
-    #navbar {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        justify-items: center;
-        text-align: center;
-    }
-
-    #navbar ul {
+@media (max-width: 770px) {
+    article.bloc-projet {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 30px 0px;
         justify-content: center;
-        align-items: center;
-        gap: 1.2rem;
-        padding: 0;
-        margin: 0;
-    }
-    #navbar ul li {
-        font-size: 1.5rem;
-    }
-
-    .section_titre {
-        margin-left: 0.2rem;
-        margin-right: 0.2rem;
-        margin-top: 2rem;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .section_titre img {
-        margin-right: 2rem; 
-        max-width: 20rem; 
-        height: auto;
-        align-items: center;
-    }
-
-    .section_carte {
-        flex-direction: row;
-        align-items: left;
-        text-align: left;
-    }
-
-    #map {
-        margin-left: 0;
-        margin-right: 0;
-        width: 100%; 
-    }
-    
-
-    .section_projet ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .section_projet ul li,
-    .section_projet ul p {
-        margin-right: 0;
-        text-align: center;
-    }
-
-    .section_projet ul img {
-        width: 10rem;
-    }
-
-    .section_projet p#texte {
-        font-size: 0.9rem;
-        margin-top: 1rem;
+        p{
+            width: 100%;
+        }
+        img{
+            max-width: 33%;
+        }
     }
 }
