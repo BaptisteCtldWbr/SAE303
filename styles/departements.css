@@ -65,6 +65,7 @@ div.grid-dp{
     }
     th{
         width: 100px;
+        font-weight: 500;
     }
     td{
         width: max-content;
