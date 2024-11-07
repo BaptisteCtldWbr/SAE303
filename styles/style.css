@@ -49,6 +49,7 @@ div.titre{
     }
     i{
         font-size: 1.5em;
+        color: var(--rougeIDF);
     }
 }
 
