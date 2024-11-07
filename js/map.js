@@ -6,6 +6,7 @@ function initMap() {
   }).addTo(map);
   return map;
 }
+
 async function recupererDonnes(url) {
   return fetch(url)
     .then(response => response.json())
@@ -75,10 +76,10 @@ function addDataToMap(map, geoJSONData) {
     popupAnchor: [0, -32]
   });
   const imgUrls = [
-    'images/FlagofFrance_6529.png',
-    'images/UnitedStatesflag_6361.png',
-    'images/flagoftheeuropeanunion_6535.png',
-    'images/sidebar_sites_earth_world_globe_20458.png'
+    'images/drapeaux/fr.png',
+    'images/drapeaux/usa.png',
+    'images/drapeaux/eu.png',
+    'images/drapeaux/world.png',
   ];
   const images = imgUrls.map(url => {
     const img = new Image();

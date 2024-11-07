@@ -1,3 +1,8 @@
+/* Pour cacher l'élément quand il n'a pas encore de départements sélectionné */
+div.grid-dp.cache{
+    display: none;
+}
+
 form#selection-dp{
     display: flex;
     justify-content: center;
