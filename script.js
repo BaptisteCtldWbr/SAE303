@@ -166,8 +166,6 @@ function addDataToMap(map, geoJSONData) {
   map.addLayer(markers); // Ajouter le groupe de clusters à la carte
 }
 
-
-
 let map = initMap();
 recupererDonnes('data/geo-les_salles_de_cinemas_en_ile-de-france.json')
   .then(data => {
@@ -177,3 +175,90 @@ recupererDonnes('data/geo-les_salles_de_cinemas_en_ile-de-france.json')
     };
     addDataToMap(map, geoJSONData);
   });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Sélectionner les éléments nécessaires
+  const dp1Select = document.getElementById('dp1');
+  const dp2Select = document.getElementById('dp2');
+  const dp1Stats = document.querySelector('.dp1 .stats');
+  const dp2Stats = document.querySelector('.dp2 .stats');
+  const dp1Image = document.querySelector('.dp1 img');
+  const dp2Image = document.querySelector('.dp2 img');
+    
+  // Fonction pour filtrer les données des cinémas par département
+  function filterCinemasByDepartment(departmentId, cinemasData) {
+    return cinemasData.filter(cinema => cinema.properties.dep === departmentId);
+  }
+  
+  // Fonction pour calculer les statistiques d'un département
+  function calculateStatistics(departmentData) {
+    let nbCinema = departmentData.length;
+    let nbSeances = departmentData.reduce((total, cinema) => total + cinema.properties.seances, 0);
+    let nbEntrees = departmentData.reduce((total, cinema) => total + cinema.properties.entrees, 0);
+    let nbEcrans = departmentData.reduce((total, cinema) => total + cinema.properties.ecrans, 0);
+    let nbFauteuils = departmentData.reduce((total, cinema) => total + cinema.properties.fauteuils, 0);
+    let nbFilms = departmentData.reduce((total, cinema) => total + cinema.properties.nombre_de_films_programmes, 0);
+  
+    // Calcul de la densité de cinémas
+    let nbCinemaParHab = nbCinema / 100000; // Supposons que la population soit de 100 000
+  
+    return {
+      nbCinema,
+      nbCinemaParHab,
+      nbSeances,
+      nbEntrees,
+      nbEcrans,
+      nbFauteuils,
+      nbFilms
+    };
+  }
+  
+  // Mettre à jour les statistiques de l'interface
+  function updateStats(departmentId, departmentStats, dpSelector) {
+    dpSelector.querySelector('.nbCinema').textContent = departmentStats.nbCinema;
+    dpSelector.querySelector('.nbCinemaParHab').textContent = departmentStats.nbCinemaParHab.toFixed(2);
+    dpSelector.querySelector('.nbSeances').textContent = departmentStats.nbSeances;
+    dpSelector.querySelector('.nbEntrees').textContent = departmentStats.nbEntrees;
+    dpSelector.querySelector('.nbEcrans').textContent = departmentStats.nbEcrans;
+    dpSelector.querySelector('.nbFauteuils').textContent = departmentStats.nbFauteuils;
+    dpSelector.querySelector('.nbFilms').textContent = departmentStats.nbFilms;
+  }
+  
+  // Fonction pour gérer la comparaison des départements
+  function compareDepartments() {
+    let dp1Id = dp1Select.value;
+    let dp2Id = dp2Select.value;
+  
+    if (dp1Id && dp2Id) {
+      // Récupérer les données des cinémas (ici à partir de votre fichier JSON)
+      fetch('data/geo-les_salles_de_cinemas_en_ile-de-france.json')
+        .then(response => response.json())
+        .then(data => {
+          let geoJSONData = {
+            "type": "FeatureCollection",
+            "features": convertToGeoJSON(data)
+          };
+            
+          // Filtrer les données des cinémas par département
+          let dp1Data = filterCinemasByDepartment(dp1Id, geoJSONData.features);
+          let dp2Data = filterCinemasByDepartment(dp2Id, geoJSONData.features);
+          // Calculer les statistiques pour chaque département
+          let dp1StatsData = calculateStatistics(dp1Data);
+          let dp2StatsData = calculateStatistics(dp2Data);
+          // Mettre à jour les statistiques sur la page
+          updateStats(dp1Id, dp1StatsData, dp1Stats);
+          updateStats(dp2Id, dp2StatsData, dp2Stats);
+  
+          // Mettre à jour les images des départements
+          dp1Image.src = `images/departements/${dp1Id}.svg`;
+          dp2Image.src = `images/departements/${dp2Id}.svg`;
+        })
+        .catch(error => console.error('Erreur lors de la récupération des données:', error));
+    }
+  }
+  
+    // Écouter les changements dans les sélecteurs de départements
+  dp1Select.addEventListener('change', compareDepartments);
+  dp2Select.addEventListener('change', compareDepartments);
+});
