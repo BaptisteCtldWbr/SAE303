@@ -15,6 +15,9 @@ article.popupCinema p{
         margin-right: 3px;
         /* color: var(--rougeIDF); */
     }
+    a{
+        color: inherit;
+    }
 }
 
 .enteteCinema{

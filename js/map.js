@@ -111,6 +111,8 @@ function addDataToMap(map, geoJSONData) {
     },
     onEachFeature: function (feature, layer) {
       const canvasId = 'myChart' + feature.properties.ndeg_auto;
+      //Génére un lien qui diriges vers les coordonées du cinéma sur OSM
+      let lienOSM = "https://www.openstreetmap.org/#map=17/"+ feature.geometry.coordinates[1]+"/"+feature.geometry.coordinates[0];
       let popupContent =
         `<article class="popupCinema">
         <div class="enteteCinema">
@@ -120,7 +122,7 @@ function addDataToMap(map, geoJSONData) {
             <p class="villeCinema">${feature.properties.commune}</p>
           </div>
         </div>
-        <p class="proprietePopup"><i class="bi bi-geo-fill"></i> ${feature.properties.adresse}</p>
+        <p class="proprietePopup"><a href="${lienOSM}" target="_blank"><i class="bi bi-geo-fill"></i> ${feature.properties.adresse.toLowerCase()}</a></p>
         <p class="proprietePopup"><i class="bi bi-tv-fill"></i> ${feature.properties.ecrans} salle pour ${feature.properties.fauteuils} fauteuils</p>
         <p class="proprietePopup"><i class="bi bi-ticket-perforated-fill"></i> ${feature.properties.entrees} entrées (+${feature.properties.evolution_entrees} % depuis 2015)</p>
         <p class="proprietePopup"><i class="bi bi-film"></i> ${feature.properties.nombre_de_films_programmes} films projetés</p>
