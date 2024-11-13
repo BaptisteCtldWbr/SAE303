@@ -1,6 +1,6 @@
 .leaflet-popup-content-wrapper{
     border: #25303B solid 1px;
-    background: linear-gradient(#25303B44, #6583A144);
+    background: linear-gradient(#25303B44, #6583A144), #FFFFFF66;
     backdrop-filter: blur(10px);
 }
 
@@ -30,7 +30,7 @@ article.popupCinema p{
     p.nomCinema{
         font-size: 3em;
         font-family: Bebas Neue;
-        color: #25303B;
+        color: var(--bleuIDMF);
         line-height: 1;
     }
 }
