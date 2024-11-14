@@ -160,6 +160,8 @@ btnValidation.addEventListener("click", function(event){                        
 
             //Change les images pour les deux départements
             imgDP1.src = `images/departements/${dp1}.png`;
+            imgDP1.alt = `${dp1}`;
+            imgDP2.alt = `${dp2}`;
             imgDP2.src = `images/departements/${dp2}.png`;
             updateStats(dp1, 'dp1');
             updateStats(dp2, 'dp2');
