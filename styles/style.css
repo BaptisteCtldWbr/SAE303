@@ -103,10 +103,17 @@ nav {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 2%;
-    h1{
-        font-size: 3em;
+    div.hero-texte{
         max-width: 49%;
         min-width: 150px;
+        h1{
+            font-size: 3em;
+        }
+        p{
+            font-size: 1.2em;
+            width: 80%;
+            min-width: 150px;
+        }
     }
     img{
         max-width: 49%;
