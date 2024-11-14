@@ -1,26 +1,26 @@
 // Initialiser la carte
-function initMap() {
+function initMap() {//fonction pour initialiser la carte, on utilise leaflet
   let map = L.map('map').setView([48.8566, 2.3522], 12); // Paris
-  L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { //permet de récupérer les tuiles d'openstreetmaps
+    attribution: '© OpenStreetMap contributors',
     minZoom: 0,
-    maxZoom: 20
+    maxZoom: 20 //permet de modifier le zoom maximal sur la carte, utile pour délémiter une zone géographique
   }).addTo(map);
-  return map;
+  return map; //retourne la carte
 }
 
-async function recupererDonnes(url) {
-  return fetch(url)
+async function recupererDonnes(url) { //fonction asynchrone pour récupérer les données du fichier json
+  return fetch(url) 
     .then(response => response.json())
     .catch(error => {
       console.error('Erreur lors du chargement du fichier JSON:', error);
-    });
+    }); //permet également de vérifier les erreurs et de l'afficher dans la console
 }
 
 // Fonction pour convertir les données JSON en GeoJSON
-function convertToGeoJSON(data) {
+function convertToGeoJSON(data) { //récupère les du fichier json et renvoie les données sous format GEOJSON pour que leaflet puisse les utiliser
   return data.map(function (cinema) {
-    let coords = cinema.geo.split(',').map(Number);
+    let coords = cinema.geo.split(',').map(Number); //permet de modifier les coordonnées afin de les avoir au bon format pour leaflet
 
     return {
       "type": "Feature",
@@ -69,15 +69,15 @@ function convertToGeoJSON(data) {
 
 // Fonction pour ajouter les données GeoJSON à la carte
 function addDataToMap(map, geoJSONData) {
-  let markers = L.markerClusterGroup();
+  let markers = L.markerClusterGroup(); //on va utiliser des cluster
 
-  const iconCinema = L.icon({
+  const iconCinema = L.icon({ //marker personnalisé 
     iconUrl: 'images/pin-cinema.svg',
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
   });
-  const imgUrls = [
+  const imgUrls = [ //liens vers les images pour le plugin d'ajout sur le chart
     'images/drapeaux/fr.png',
     'images/drapeaux/usa.png',
     'images/drapeaux/eu.png',
@@ -86,14 +86,14 @@ function addDataToMap(map, geoJSONData) {
   const images = imgUrls.map(url => {
     const img = new Image();
     img.src = url;
-    return img;
+    return img; 
   });
 
-  const imagePlugin = {
-    afterDraw: (chart) => {
+  const imagePlugin = { //plugin pour ajouter les images de drapeaux sur la carte
+    afterDraw: (chart) => { //les ajoute après avoir créer le chart
       const ctx = chart.ctx;
       const chartArea = chart.chartArea;
-      chart.data.datasets.forEach((dataset) => {
+      chart.data.datasets.forEach((dataset) => { //permet de le faire pour chaque data
         const meta = chart.getDatasetMeta(0);
         meta.data.forEach((arc, index) => {
           const radius = (arc.outerRadius + arc.innerRadius) / 2;
@@ -109,13 +109,13 @@ function addDataToMap(map, geoJSONData) {
   };
   L.geoJSON(geoJSONData, {
     pointToLayer: function (feature, latlng) {
-      return L.marker(latlng, { icon: iconCinema });
+      return L.marker(latlng, { icon: iconCinema }); //permet d'ajouter les markers
     },
-    onEachFeature: function (feature, layer) {
-      const canvasId = 'myChart' + feature.properties.ndeg_auto;
+    onEachFeature: function (feature, layer) { //boucle qui le fait pour chaque élément
+      const canvasId = 'myChart' + feature.properties.ndeg_auto; //permet d'avoir des graphique pour chaque élément 
       //Génére un lien qui diriges vers les coordonées du cinéma sur OSM
       let lienOSM = "https://www.openstreetmap.org/#map=17/"+ feature.geometry.coordinates[1]+"/"+feature.geometry.coordinates[0];
-      let popupContent =
+      let popupContent = //html du popup
         `<article class="popupCinema">
         <div class="enteteCinema">
           <img src="images/pin-cinema.svg" alt="Pin Cinema">
@@ -134,21 +134,21 @@ function addDataToMap(map, geoJSONData) {
         <p class="proprietePopup"><i class="bi bi-building-fill"></i> Séances programmées par ${feature.properties.programmateur}</p>
         <p class="proprietePopup"><i class="bi bi-palette"></i> Art et essai : ${feature.properties.ae} (${feature.properties.films_art_et_essai} films)</p>
       </article>`;
-      layer.bindPopup(popupContent);
-      layer.on('popupopen', function () {
-        const ctx = document.getElementById(canvasId).getContext('2d');
-        new Chart(ctx, {
-          type: 'pie',
+      layer.bindPopup(popupContent); //ajoute le popupContent pour chaque élement
+      layer.on('popupopen', function () { //permet d'ajouter le graphique, qui se dessine quand le popup est ouvert
+        const ctx = document.getElementById(canvasId).getContext('2d'); //récupère l'id de l'élément canva
+        new Chart(ctx, { //utilisation de chart.js
+          type: 'pie', //graphique circulaire
           data: {
             datasets: [{
-              label: 'Part de marché',
-              data: [
+              label: 'Part de marché', //label du graphique
+              data: [ //données affichées sur le graphique
                 feature.properties.pdm_en_entrees_des_films_francais,
                 feature.properties.pdm_en_entrees_des_films_americains,
                 feature.properties.pdm_en_entrees_des_films_europeens,
                 feature.properties.pdm_en_entrees_des_autres_films
               ],
-              backgroundColor: ['#C63D31', '#C63D31', '#C63D31', '#C63D31'],
+              backgroundColor: ['#C63D31', '#C63D31', '#C63D31', '#C63D31'], //meme couleur, car différencié par le plugin
               borderColor: '#25303B',
               borderWidth: 1
             }]
@@ -157,10 +157,10 @@ function addDataToMap(map, geoJSONData) {
             responsive: true,
             plugins: {
               legend: { position: 'top' },
-              title: { display: false, text: 'Répartition des entrées par origine des films' }
+              title: { display: false, text: 'Répartition des entrées par origine des films' } //on n'affiche pas le contenu du titre
             }
           },
-          plugins: [imagePlugin]
+          plugins: [imagePlugin] //ajout du plugin d'image
         });
       });
     }
@@ -171,13 +171,12 @@ function addDataToMap(map, geoJSONData) {
   map.addLayer(markers); // Ajouter le groupe de clusters à la carte
 }
 
-let map = initMap();
-recupererDonnes('data/geo-les_salles_de_cinemas_en_ile-de-france.json')
-  .then(data => {
+let map = initMap(); //initialisation de la carte
+recupererDonnes('data/geo-les_salles_de_cinemas_en_ile-de-france.json') //récupère les données du fichier json
+  .then(data => { //puis modifie les données afin de le rendre exploitable pas leaflet
     let geoJSONData = {
       "type": "FeatureCollection",
-      "features": convertToGeoJSON(data)
+      "features": convertToGeoJSON(data) //conversion des data en GEOJSON
     };
-    addDataToMap(map, geoJSONData);
+    addDataToMap(map, geoJSONData); //appel de la fonction pour ajouter les markers, cluster sur la carte
   });
-//ça marcha paaaaaaaaaaaaaaaaaaaaaaaaaaas
