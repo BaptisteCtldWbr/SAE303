@@ -5,9 +5,12 @@ div.grid-dp.cache{
 
 form#selection-dp{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    column-gap: 30px;
+    row-gap: 10px;
     .input-select{
         width: min-content;
         label{
@@ -24,6 +27,7 @@ form#selection-dp{
         color: var(--rougeIDF);
         font-size: 2em;
         line-height: 1;
+        margin: 0;
     }
     button{
         background-color: var(--rougeIDF);
@@ -31,6 +35,12 @@ form#selection-dp{
         padding: 10px;
         border-radius: 50Px;
         border: none;
+    }
+}
+
+@media (max-width: 650px) {
+    form#selection-dp{
+        flex-direction: column;
     }
 }
 
