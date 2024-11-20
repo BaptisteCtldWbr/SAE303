@@ -150,10 +150,10 @@ btnValidation.addEventListener("click", function(event){                        
     let dp1 = selectDP1.value;
     let dp2 = selectDP2.value;
     if(dp1 == "" || dp2 == ""){                                                     //Vérifie que les deux départements sont bons
-        console.log("Un des champs est vide, pb !")
+        alert("Un des champs est vide, pb !")
     } else {
         if(dp1 == dp2){                                                             //Et qu'ils ne sont pas les mêmes
-            console.log("Ce sont les deux même départements.")
+            alert("Ce sont les deux même départements.")
         } else {
             //Affiche la comparaison
             comparaisonDP.classList.remove("cache");
