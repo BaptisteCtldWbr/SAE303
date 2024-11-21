@@ -76,14 +76,14 @@ loadDepartementData().then(data => {
 function updateStats(dp, prefix) {
     const data = departementData[dp];
     const ileDeFrancePopulation = {
-        "75": 2187526,  // Paris
-        "77": 1416138,  // Seine-et-Marne
-        "78": 1467020,  // Yvelines
-        "91": 1348447,  // Essonne
-        "92": 1628757,  // Hauts-de-Seine
-        "93": 1673789,  // Seine-Saint-Denis
-        "94": 1395611,  // Val-de-Marne
-        "95": 1266791   // Val-d'Oise
+        "75": 2190327,  // Paris
+        "77": 1397665,  // Seine-et-Marne
+        "78": 1431808,  // Yvelines
+        "91": 1287330,  // Essonne
+        "92": 1603268,  // Hauts-de-Seine
+        "93": 1606660,  // Seine-Saint-Denis
+        "94": 1378151,  // Val-de-Marne
+        "95": 1221923   // Val-d'Oise
     };
 
     if (!data) {
