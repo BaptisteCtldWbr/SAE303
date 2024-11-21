@@ -82,6 +82,7 @@ div.grid-dp{
         font-weight: 500;
     }
     td{
+        font-family: Bebas Neue;
         width: max-content;
     }
 }
