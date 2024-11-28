@@ -1,9 +1,6 @@
 // Initialiser la carte
 function initMap() {//fonction pour initialiser la carte, on utilise leaflet
-  let map = L.map('map', {fullscreenControl: true,
-	fullscreenControlOptions: {
-		position: 'topleft' }
-	}).setView([48.8566, 2.3522], 12); // Paris
+  let map = L.map('map',).setView([48.8566, 2.3522], 12); // Paris
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { //permet de récupérer les tuiles d'openstreetmaps
     attribution: '© OpenStreetMap contributors',
     minZoom: 0,
@@ -11,6 +8,7 @@ function initMap() {//fonction pour initialiser la carte, on utilise leaflet
   }).addTo(map);
   return map; //retourne la carte
 }
+
 
 async function recupererDonnes(url) { //fonction asynchrone pour récupérer les données du fichier json
   return fetch(url) 
@@ -183,3 +181,7 @@ recupererDonnes('data/geo-les_salles_de_cinemas_en_ile-de-france.json') //récup
     };
     addDataToMap(map, geoJSONData); //appel de la fonction pour ajouter les markers, cluster sur la carte
   });
+
+let fsControl = L.control.fullscreen();
+// add fullscreen control to the map
+map.addControl(fsControl);
