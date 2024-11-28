@@ -1,6 +1,9 @@
 // Initialiser la carte
 function initMap() {//fonction pour initialiser la carte, on utilise leaflet
-  let map = L.map('map').setView([48.8566, 2.3522], 12); // Paris
+  let map = L.map('map', {fullscreenControl: true,
+	fullscreenControlOptions: {
+		position: 'topleft' }
+	}).setView([48.8566, 2.3522], 12); // Paris
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { //permet de récupérer les tuiles d'openstreetmaps
     attribution: '© OpenStreetMap contributors',
     minZoom: 0,
