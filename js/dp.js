@@ -66,8 +66,8 @@ loadDepartementData().then(data => {
         if (cinema.ae === "oui") { //vérifie si le cinema est un cinéma art et essai
             departementData[dep].nbCinemasAE++;
             departementData[dep].nbFilmsProgAE += cinema.films_art_et_essai;
-            departementData[dep].pourcentFilmsAE += ((cinema.part_des_seances_de_films_art_et_essai * cinema.seances ) / 100).toFixed(0);//calcul pour retrouver mathématiquement le nombre de séances art et essai
-            departementData[dep].pourcentEntreesAE += ((cinema.pdm_en_entrees_des_films_art_et_essai * cinema.entrees) / 100).toFixed(0);//calcul pour retrouver le nombre d'entrées art et essai
+            departementData[dep].pourcentFilmsAE += ((cinema.part_des_seances_de_films_art_et_essai * cinema.seances ) / 100);
+            departementData[dep].pourcentEntreesAE += ((cinema.pdm_en_entrees_des_films_art_et_essai * cinema.entrees) / 100);
         }
     });
 });
